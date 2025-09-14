@@ -1,7 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Portfolio.css';
-import { SiJavascript, SiTypescript, SiV, SiReact, SiSass, SiTailwindcss, SiExpress, SiMongodb, SiUikit } from 'react-icons/si';
+import profileImage from '../assets/pfi.jpg';
+import { 
+  SiJavascript, 
+  SiTypescript, 
+  SiV, 
+  SiReact, 
+  SiSass, 
+  SiTailwindcss, 
+  SiExpress, 
+  SiMongodb, 
+  SiUikit,
+} from 'react-icons/si';
+import { SiSpringboot } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import { FaPython , FaDocker,FaAws} from "react-icons/fa";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { DiMysql } from "react-icons/di";
+import { FaGolang } from "react-icons/fa6";
+import { SiAmazondynamodb } from "react-icons/si";
+import { SiApachekafka } from "react-icons/si";
 
 const Portfolio = () => {
   return (
@@ -18,7 +37,7 @@ const Portfolio = () => {
 
         <div className="card who-am-i">
           <h2>Who am I?</h2>
-          <p>Hey! My Name is Tim Gatzke, I am a Full Stack Developer and I am currently a student in Germany. I am passionate about creating software solutions and I am always looking for new challenges. If you have a project that you would like to work on, feel free to contact me.</p>
+          <p>Hey! My Name is Sinh, I am a 21 years old Software Developer in Sydney. I like to build full-stack apps, brew strong coffee, and learn new tricks while coding.</p>
         </div>
 
         <div className="card student-dev">
@@ -37,12 +56,24 @@ const Portfolio = () => {
             <SiExpress />
             <SiMongodb />
             <SiUikit />
+            <SiSpringboot />
+            <FaJava />
+            <FaPython />
+            <FaDocker />
+            <FaAws />
+            <BiLogoPostgresql />
+            <DiMysql />
+            <FaGolang />
+            <SiAmazondynamodb />
+            <SiApachekafka />
           </div>
         </div>
 
         <div className="card profile">
-          <div className="profile-pic"></div>
-          <h3>Tim Gatzke</h3>
+          <div className="profile-pic">
+            <img src={profileImage} alt="Sinh Nguyen" />
+          </div>
+          <h3>Sinh Nguyen</h3>
         </div>
 
         <div className="card starry-sky"></div>
@@ -54,16 +85,17 @@ const Portfolio = () => {
         <div className="card education">
           <h2>Education</h2>
           <div>
-            <h4>High School <span className="date">(2019 - Today)</span></h4>
-            <p>I am currently attending the 10th class of a Gemeinschaftsschule in Germany.</p>
+            <h4>Bachelor of computer science <span className="date">(Oct 2022 - Dec 2025)</span></h4>
+            <p>Currently in my last semester studying a Bachelor of Computer Science at the University of Wollongong (UOW), Wollongong campus.</p>
           </div>
           <div>
             <h4>CS50's Introduction to Computer Science <span className="date">(2021)</span></h4>
             <p>I took part in the online course CS50's Introduction to Computer Science by Harvard University.</p>
           </div>
+          <h2>Experience</h2>
           <div>
-            <h4>CS50's Introduction to Game Development <span className="date">(2022)</span></h4>
-            <p>I took part in the online course CS50's Introduction to Game Development by Harvard University in order to learn more about game development with Lua and C#.</p>
+            <h4>Internship at Sample Assist <span className="date">(August 2024 - June 2025)</span></h4>
+            <p>I work as a Full Stack Developer, building applications with TypeScript and React on the frontend, and Express with AWS on the backend.</p>
           </div>
         </div>
       </div>

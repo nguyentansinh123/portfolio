@@ -4,6 +4,9 @@ import './Projects.css';
 import './Portfolio.css';
 import { FaLink, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import useSmoothScroll from '../hooks/useSmoothScroll';
+import logoImage from '../assets/logo.png';
+import logo2Image from '../assets/logoo2.png';
+import logo3Image from '../assets/logo3.png';
 
 const Projects = () => {
   useSmoothScroll();
@@ -44,42 +47,120 @@ const Projects = () => {
         <main className="projects-content">
           <div className="project-entry card animate">
             <div className="project-image">
-              <img src="https://i.imgur.com/j6rD1j2.png" alt="Wild-Kamera.com" />
+              <img src={logoImage} alt="White Knight Logo" />
             </div>
             <div className="project-details">
-              <h2>Wild-Kamera.com</h2>
-              <p>Wild-Kamera.com is a Shopware Website that sells Wildlife Cameras and Accessories for Hunters and Photographers. The website is built using Shopware 6, a popular e-commerce platform in Germany. The website is built using PHP, JavaScript, CSS, and MySQL.</p>
+              <h2>White Knight</h2>
+              <p>
+                White Knight is a secure, cloud-based document management system designed for handling legal documents such as NDAs.
+                It enables users to upload, share, sign, and track documents with full version control and detailed activity logging.
+              </p>
+              <h3>Key Features</h3>
+              <ul className="feature-list">
+                <li>Digital signing and document revision history</li>
+                <li>Role-based access control for admins, providers, and users</li>
+                <li>In-app notifications and activity tracking</li>
+                <li>AI-powered legal assistant for quick guidance</li>
+                <li>Real Time Chat, Video Call</li>
+                <li>And Many More...</li>
+              </ul>
               <div className="project-tags">
-                <span>PHP</span>
-                <span>Shopware</span>
-                <span>JavaScript</span>
-                <span>CSS</span>
-                <span>MySQL</span>
+                <span>React</span>
+                <span>TypeScript</span>
+                <span>Express</span>
+                <span>Node.js</span>
+                <span>AWS</span>
+                <span>DynamoDB</span>
+                <span>S3</span>
+                <span>IAM</span>
+                <span>Tailwind CSS</span>
+                <span>MongoDB</span>
+                <span>Cloudinary</span>
+                <span>Streamio</span>
+                <span>WebRTC</span>
               </div>
-              <a href="https://wild-kamera.com" target="_blank" rel="noopener noreferrer" className="project-link-button">
-                <FaLink /> Visit Site
+              <a href="https://github.com/nguyentansinh123/NDA-Signing-Project" className="project-link-button">
+                <FaLink /> Project Details
               </a>
             </div>
           </div>
+
           <div className="project-entry card animate">
             <div className="project-image">
-              <div className="video-placeholder">
-                  <p className="video-title">ZU FREUNDLICH</p>
-                  <div className="play-button-container">
-                      <div className="play-button"></div>
-                  </div>
-              </div>
+              <img src={logo3Image} alt="White Knight Logo" />
             </div>
             <div className="project-details">
-              <h2>Zu Freundlich RP</h2>
-              <p>Zu Freundlich RP is a FiveM Roleplay Server based in Germany. The server was built using LUA, ESX Framework, and MySQL. The server has a custom economy system, custom vehicles, custom scripts, and custom jobs.</p>
+              <h2>Price Checking</h2>
+              <p>
+                A comprehensive web scraping application that collects and compares product data from major Australian supermarket chains like Coles, Woolworths, and IGA. This tool enables users to track price changes over time, compare prices across different retailers, and receive alerts for price drops on their favorite products.
+              </p>
+              <h3>Key Features</h3>
+              <ul className="feature-list">
+                <li>Product Search – Find items across multiple supermarkets simultaneously</li>
+                <li>Price Comparison – Compare prices between Coles, Woolworths, and IGA</li>
+                <li>Price History – Track price changes over time with interactive charts</li>
+                <li>Price Alerts – Get notifications when prices drop on watched items</li>
+                <li>Shopping List – Create and manage shopping lists optimized for best prices</li>
+                <li>Responsive Design – Access from any device with a mobile-friendly interface</li>
+                <li>Daily Updates – Automated scraping keeps prices current and accurate</li>
+                <li>Performance Optimization – Efficient data retrieval and storage systems</li>
+              </ul>
               <div className="project-tags">
-                <span>LUA</span>
-                <span>ESX Framework</span>
-                <span>MySQL</span>
+                <span>Python</span>
+                <span>BeautifulSoup</span>
+                <span>Selenium</span>
+                <span>React</span>
+                <span>Node.js</span>
+                <span>Express</span>
+                <span>MongoDB</span>
+                <span>Chart.js</span>
+                <span>AWS Lambda</span>
+                <span>Docker</span>
               </div>
-              <a href="#" className="project-link-button coming-soon">
-                <FaLink /> Coming Soon!
+              <a href="https://github.com/nguyentansinh123/PriceChecking" className="project-link-button">
+                <FaLink /> Project Details
+              </a>
+            </div>
+          </div>
+
+          <div className="project-entry card animate">
+            <div className="project-image">
+              <img src={logo2Image} alt="White Knight Logo" />
+            </div>
+            <div className="project-details">
+              <h2>CV AI Builder</h2>
+              <p>
+                CV AI Builder Pro is a powerful and intuitive web application that helps users create professional CVs with the
+                assistance of AI. The app features real-time updates, automatic saving, and subscription-based AI capabilities,
+                all wrapped in a beautiful, user-friendly interface.
+              </p>
+              <h3>Key Features</h3>
+              <ul className="feature-list">
+                <li>Authentication – Secure login using Clerk</li>
+                <li>AI Assistance – OpenAI integration to auto-generate text and suggestions</li>
+                <li>Multiple CVs – Create, preview, edit, and delete multiple CV forms</li>
+                <li>Auto-save – Automatically saves inputs to PostgreSQL every 1.5 seconds of inactivity</li>
+                <li>Image Upload – Upload profile pictures using Vercel Blob</li>
+                <li>Subscription Management – Stripe integration with webhooks for upgrades</li>
+                <li>Real-time Preview – Live CV preview as you type</li>
+                <li>Customizable Templates – Adjust CV colors, image borders, and layouts</li>
+                <li>PDF Export – Download your CV in PDF format</li>
+                <li>Dark Mode – Toggle light/dark themes for better UX</li>
+              </ul>
+              <div className="project-tags">
+                <span>Next.js</span>
+                <span>TypeScript</span>
+                <span>ShadCN/UI</span>
+                <span>Prisma</span>
+                <span>PostgreSQL</span>
+                <span>Clerk</span>
+                <span>Stripe</span>
+                <span>OpenAI API</span>
+                <span>Vercel Blob</span>
+                <span>Vercel</span>
+              </div>
+              <a href="https://github.com/nguyentansinh123/CV-AI-Builder" className="project-link-button">
+                <FaLink /> Project Details
               </a>
             </div>
           </div>
@@ -88,17 +169,17 @@ const Projects = () => {
         <section id="contact" className="contact-section">
           <h2 className="contact-title">Contact with me</h2>
           <p className="contact-subtitle">You can also get in touch with me through this form below.</p>
-          
+
           <div className="contact-grid">
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="contact-card">
+            <a href="hhttps://github.com/nguyentansinh123" target="_blank" rel="noopener noreferrer" className="contact-card">
               <FaGithub className="contact-icon" />
               <div className="contact-card-content">
                 <h3>Github Profile</h3>
                 <p>Find more of my repositories</p>
               </div>
             </a>
-            
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="contact-card">
+
+            <a href="https://www.linkedin.com/in/sinh-nguyen-93a9b2216/" target="_blank" rel="noopener noreferrer" className="contact-card">
               <FaLinkedin className="contact-icon" />
               <div className="contact-card-content">
                 <h3>LinkedIn</h3>
@@ -106,15 +187,15 @@ const Projects = () => {
               </div>
             </a>
           </div>
-          
+
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">NAME</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                placeholder="John Doe" 
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="John Doe"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -123,11 +204,11 @@ const Projects = () => {
             </div>
             <div className="form-group">
               <label htmlFor="email">EMAIL</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                placeholder="your.email@example.com" 
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your.email@example.com"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -136,10 +217,10 @@ const Projects = () => {
             </div>
             <div className="form-group">
               <label htmlFor="message">MESSAGE</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                placeholder="Enter your message here" 
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Enter your message here"
                 value={formData.message}
                 onChange={handleChange}
                 required
