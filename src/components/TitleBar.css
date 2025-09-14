@@ -1,0 +1,100 @@
+.title-bar {
+  background-color: #3c3c3c;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  user-select: none;
+  cursor: move;
+  z-index: 10;
+}
+
+.title-bar-left {
+  display: flex;
+  align-items: center;
+}
+
+.socials-menu-container {
+  position: relative;
+  margin-right: 15px;
+}
+
+.socials-menu-button {
+  color: #fff;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.socials-menu-button:hover {
+  background-color: #555;
+}
+
+.socials-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #2b2b2b;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 5px 0;
+  z-index: 20;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.socials-dropdown-menu a,
+.socials-dropdown-menu .menu-item {
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.socials-dropdown-menu a:hover,
+.socials-dropdown-menu .menu-item:hover {
+  background-color: #444;
+}
+
+.title-bar-text {
+  color: #fff;
+  font-weight: bold;
+}
+
+.title-bar-controls {
+  display: flex;
+}
+
+.button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:active {
+  opacity: 0.6;
+}
+
+.close {
+  background-color: #ff5f56;
+}
+
+.minimize {
+  background-color: #ffbd2e;
+}
+
+.maximize {
+  background-color: #27c93f;
+}

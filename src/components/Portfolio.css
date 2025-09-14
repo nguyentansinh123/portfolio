@@ -1,0 +1,201 @@
+.portfolio-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  color: #fff;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.exit-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  max-width: 1200px;
+  margin: 60px auto 0;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.portfolio-header {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 10px;
+  animation: slide-in-down 0.6s ease-out forwards;
+  animation-delay: 0.1s;
+}
+
+.portfolio-header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.portfolio-header nav a:hover {
+  background-color: #333;
+}
+
+.who-am-i {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  animation: slide-in-left 0.7s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.student-dev {
+  grid-column: 1;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #004a7c;
+  animation: slide-in-left 0.7s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.technologies {
+  grid-column: 1;
+  grid-row: 4;
+  animation: slide-up 0.8s ease-out forwards;
+  animation-delay: 0.7s;
+}
+
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.profile {
+  grid-column: 2;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: slide-up 0.7s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ff5f56; /* Placeholder */
+  margin-bottom: 10px;
+}
+
+.starry-sky {
+  grid-column: 3 / span 2;
+  grid-row: 2;
+  background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=2113&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  animation: slide-in-right 0.7s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.quote {
+  grid-column: 3 / span 2;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #004a7c;
+  animation: slide-in-right 0.7s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.education {
+  grid-column: 2 / span 3;
+  grid-row: 4;
+  animation: slide-up 0.8s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+.education h4 {
+  margin-top: 15px;
+}
+
+.education .date {
+  color: #aaa;
+  font-size: 0.9em;
+}
+
+@keyframes slide-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,275 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Remove all focus outlines in the app */
+.App *:focus,
+.App *:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.terminal {
+  background-color: #000000;
+  color: #abb2bf;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  cursor: text;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.welcome-message h2 {
+  color: #61afef;
+}
+
+.ascii-art {
+  white-space: pre;
+  font-size: 10px;
+  flex-basis: 100%;
+  text-align: left;
+  color: #98c379; /* Lazy Git green */
+}
+
+.system-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.info-box {
+  border: 1px solid #56b6c2;
+  padding: 10px;
+  margin-bottom: 20px;
+  white-space: pre;
+  color: #abb2bf;
+  background-color: #2c323c;
+  border-radius: 5px;
+}
+
+.info-box h4 {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  color: #61afef;
+}
+
+.dots {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.dot {
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.dot.red { color: #e06c75; }
+.dot.yellow { color: #e5c07b; }
+.dot.green { color: #98c379; }
+.dot.blue { color: #61afef; }
+.dot.magenta { color: #c678dd; }
+.dot.cyan { color: #56b6c2; }
+.dot.white { color: #abb2bf; }
+.dot.black { color: #282c34; }
+
+
+.shell {
+  padding: 10px;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.prompt > span:first-of-type {
+  color: #98c379;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.prompt span:first-child {
+  margin-right: 5px;
+}
+
+.input-area {
+  white-space: pre;
+  margin-right: 0;
+  padding-right: 0;
+  color: #abb2bf;
+  font-weight: normal;
+}
+
+.cursor {
+  display: inline-block;
+  background-color: #abb2bf;
+  width: 8px;
+  height: 16px;
+  margin-left: -1px;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  from, to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #abb2bf;
+  }
+}
+
+.enter-prompt {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #61afef;
+  animation: blink-prompt 1.5s infinite;
+}
+
+@keyframes blink-prompt {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Directory listings styling */
+.directory {
+  margin: 10px 0;
+}
+
+.directory-item {
+  display: block;
+  margin: 2px 0;
+}
+
+.directory-item.folder {
+  color: #61afef;
+  font-weight: bold;
+}
+
+.directory-item.file {
+  color: #98c379;
+}
+
+.directory-item.file-md {
+  color: #c678dd;
+}
+
+/* Code block styling for syntax highlighting */
+.code-blue {
+  color: #61afef;
+}
+
+.code-green {
+  color: #98c379;
+}
+
+.code-red {
+  color: #e06c75;
+}
+
+.code-yellow {
+  color: #e5c07b;
+}
+
+.code-purple {
+  color: #c678dd;
+}
+
+.code-cyan {
+  color: #56b6c2;
+}
+
+/* FastFetch output styling */
+.fastfetch {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.fastfetch-art {
+  white-space: pre;
+  font-size: 10px;
+  color: #98c379;
+}
+
+.fastfetch-info {
+  background-color: #1e1e2e;
+  border: 1px solid #56b6c2;
+  padding: 10px;
+  border-radius: 5px;
+  flex-grow: 1;
+}
+
+.fastfetch-title {
+  color: #61afef;
+  border-bottom: 1px solid #56b6c2;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.fastfetch-row {
+  display: flex;
+  margin: 3px 0;
+}
+.portfolio-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #61afef;
+  color: #1a1a1a;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.portfolio-button:hover {
+  background-color: #98c379;
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.portfolio-button:active {
+  transform: translateX(-50%) translateY(1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
