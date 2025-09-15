@@ -7,6 +7,7 @@ import useSmoothScroll from '../hooks/useSmoothScroll';
 import logoImage from '../assets/logo.png';
 import logo2Image from '../assets/logoo2.png';
 import logo3Image from '../assets/logo3.png';
+import logo4Image from '../assets/logo4.png';
 
 const Projects = () => {
   useSmoothScroll();
@@ -160,6 +161,46 @@ const Projects = () => {
                 <span>Vercel</span>
               </div>
               <a href="https://github.com/nguyentansinh123/CV-AI-Builder" className="project-link-button">
+                <FaLink /> Project Details
+              </a>
+            </div>
+          </div>
+
+          <div className="project-entry card animate">
+            <div className="project-image">
+              <img src={logo4Image} alt="White Knight Logo" />
+            </div>
+            <div className="project-details">
+              <h2>Student management</h2>
+              <p>
+                A scalable application built using a microservice architecture designed to efficiently manage student data,
+                course enrollments, and academic performance. This system provides administrators and faculty with powerful
+                tools to track student progress, manage course assignments, and generate insightful reports.
+              </p>
+              <h3>Key Features</h3>
+              <ul className="feature-list">
+                <li>Authentication – Secure role-based access control for admins, faculty, and students</li>
+                <li>Student Dashboard – Comprehensive view of courses, grades, and assignments</li>
+                <li>Course Management – Tools for creating and managing course content and schedules</li>
+                <li>Attendance Tracking – Digital system for recording and monitoring student attendance</li>
+                <li>Performance Analytics – Detailed reports on student and course performance metrics</li>
+                <li>Notification System – Automated alerts for important deadlines and announcements</li>
+                <li>Responsive Design – Accessible from desktop and mobile devices</li>
+                <li>Real-time Updates – Synchronization across all services for up-to-date information</li>
+              </ul>
+              <div className="project-tags">
+                <span>Spring Boot</span>
+                <span>Spring Security</span>
+                <span>Java</span>
+                <span>Docker</span>
+                <span>Kubernetes</span>
+                <span>Kafka</span>
+                <span>gRPC</span>
+                <span>AWS</span>
+                <span>PostgreSQL</span>
+                <span>React</span>
+              </div>
+              <a href="https://github.com/nguyentansinh123/studentmanagement" className="project-link-button">
                 <FaLink /> Project Details
               </a>
             </div>

@@ -3,7 +3,7 @@ import { fileSystem } from './filesystem';
 const getCurrentDirectory = (currentDir) => {
   const path = currentDir.split('/').filter(p => p && p !== '~');
   let currentObject = fileSystem['~'];
-  
+
   for (const segment of path) {
     if (currentObject.children && currentObject.children[segment] && currentObject.children[segment].type === 'directory') {
       currentObject = currentObject.children[segment];
@@ -16,16 +16,16 @@ const getCurrentDirectory = (currentDir) => {
 
 const renderDirectory = (dir) => {
   if (!dir || !dir.children) return 'Not a directory';
-  
+
   let output = '<div class="directory">';
   const items = Object.entries(dir.children);
   const directories = items.filter(([_, item]) => item.type === 'directory');
   const files = items.filter(([_, item]) => item.type === 'file');
-  
+
   directories.forEach(([name, _]) => {
     output += `<span class="directory-item folder">${name}/</span>`;
   });
-  
+
   files.forEach(([name, _]) => {
     if (name.endsWith('.md')) {
       output += `<span class="directory-item file-md">${name}</span>`;
@@ -33,21 +33,21 @@ const renderDirectory = (dir) => {
       output += `<span class="directory-item file">${name}</span>`;
     }
   });
-  
+
   output += '</div>';
   return output;
 };
 
 const renderFileContent = (file) => {
   if (!file || !file.content) return 'Empty file';
-  
+
   let content = file.content;
   content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   content = content.replace(/^# (.*)/gm, '<span class="code-blue"># $1</span>');
   content = content.replace(/^## (.*)/gm, '<span class="code-cyan">## $1</span>');
   content = content.replace(/^- (.*)/gm, '<span class="code-green">- $1</span>');
   content = content.replace(/`([^`]+)`/g, '<span class="code-yellow">`$1`</span>');
-  
+
   return `<div class="file-content">${content}</div>`;
 };
 
@@ -101,8 +101,8 @@ const parseArgs = (command) => {
 
   for (let i = 0; i < command.length; i++) {
     const char = command[i];
-    
-    if ((char === '"' || char === "'") && (i === 0 || command[i-1] !== '\\')) {
+
+    if ((char === '"' || char === "'") && (i === 0 || command[i - 1] !== '\\')) {
       if (!inQuotes) {
         inQuotes = true;
         quoteChar = char;
@@ -142,7 +142,7 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
         output = `ls: cannot access '${currentDir}': No such file or directory`;
       }
       break;
-    
+
     case 'cd':
       if (!args[0] || args[0] === '~') {
         setCurrentDir('~');
@@ -159,7 +159,7 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
         }
       }
       break;
-    
+
     case 'cat':
       if (!args[0]) {
         output = 'Usage: cat <filename>';
@@ -172,93 +172,93 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
         output = `cat: ${args[0]}: No such file`;
       }
       break;
-    
+
     case 'pwd':
       output = currentDir;
       break;
-    
+
     case 'cp':
       if (args.length < 2) {
         output = 'Usage: cp <source> <destination>';
         break;
       }
-      
+
       const sourcePath = args[0];
       const destPath = args[1];
       const currentDir1 = getCurrentDirectory(currentDir);
-      
+
       if (!currentDir1) {
         output = `cp: cannot stat '${currentDir}': No such file or directory`;
         break;
       }
-      
+
       if (!currentDir1.children[sourcePath]) {
         output = `cp: cannot stat '${sourcePath}': No such file or directory`;
         break;
       }
-      
+
       // Create a deep copy of the file or directory
       const sourceFile = currentDir1.children[sourcePath];
       currentDir1.children[destPath] = JSON.parse(JSON.stringify(sourceFile));
       output = `Copied ${sourcePath} to ${destPath}`;
       break;
-    
+
     case 'rm':
       // Remove file or directory
       if (!args[0]) {
         output = 'Usage: rm <file_or_directory>';
         break;
       }
-      
+
       const currentDirRm = getCurrentDirectory(currentDir);
       if (!currentDirRm) {
         output = `rm: cannot remove '${args[0]}': No such file or directory`;
         break;
       }
-      
+
       if (!currentDirRm.children[args[0]]) {
         output = `rm: cannot remove '${args[0]}': No such file or directory`;
         break;
       }
-      
+
       // Check if recursive flag is set for directories
       if (currentDirRm.children[args[0]].type === 'directory' && !args.includes('-r') && !args.includes('-rf')) {
         output = `rm: cannot remove '${args[0]}': Is a directory. Use -r flag to remove directories.`;
         break;
       }
-      
+
       delete currentDirRm.children[args[0]];
       output = `Removed ${args[0]}`;
       break;
-    
+
     case 'mv':
       // Move/rename file or directory
       if (args.length < 2) {
         output = 'Usage: mv <source> <destination>';
         break;
       }
-      
+
       const sourceName = args[0];
       const destName = args[1];
       const currentDirMv = getCurrentDirectory(currentDir);
-      
+
       if (!currentDirMv) {
         output = `mv: cannot stat '${currentDir}': No such file or directory`;
         break;
       }
-      
+
       if (!currentDirMv.children[sourceName]) {
         output = `mv: cannot stat '${sourceName}': No such file or directory`;
         break;
       }
-      
+
       // Move the item (rename)
       const sourceItem = currentDirMv.children[sourceName];
       currentDirMv.children[destName] = sourceItem;
       delete currentDirMv.children[sourceName];
       output = `Moved ${sourceName} to ${destName}`;
       break;
-    
+
     case 'echo':
       // Echo text to output
       if (args.length === 0) {
@@ -266,51 +266,51 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
       } else {
         // Join args and strip quotes if present
         let text = args.join(' ');
-        if ((text.startsWith('"') && text.endsWith('"')) || 
-            (text.startsWith("'") && text.endsWith("'"))) {
+        if ((text.startsWith('"') && text.endsWith('"')) ||
+          (text.startsWith("'") && text.endsWith("'"))) {
           text = text.slice(1, -1);
         }
         output = text;
       }
       break;
-    
+
     case 'whoami':
       // Show current user
       output = 'user';
       break;
-    
+
     case 'grep':
       // Simple grep implementation
       if (args.length < 2) {
         output = 'Usage: grep <pattern> <filename>';
         break;
       }
-      
+
       const pattern = args[0];
       const filename = args[1];
       const currentDirGrep = getCurrentDirectory(currentDir);
-      
+
       if (!currentDirGrep || !currentDirGrep.children[filename]) {
         output = `grep: ${filename}: No such file or directory`;
         break;
       }
-      
+
       if (currentDirGrep.children[filename].type !== 'file') {
         output = `grep: ${filename}: Is a directory`;
         break;
       }
-      
+
       // Create regex from pattern and search file content
       try {
         const regex = new RegExp(pattern, 'g');
         const fileContent = currentDirGrep.children[filename].content;
         const lines = fileContent.split('\n');
         const matchingLines = lines.filter(line => regex.test(line));
-        
+
         if (matchingLines.length > 0) {
           // Highlight matches
           const highlightedLines = matchingLines.map(line => {
-            return line.replace(new RegExp(pattern, 'g'), 
+            return line.replace(new RegExp(pattern, 'g'),
               match => `<span class="code-yellow">${match}</span>`);
           });
           output = highlightedLines.join('\n');
@@ -348,9 +348,11 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
 <span class="code-green">fastfetch</span> - Display system information
 <span class="code-green">download cv</span> - Download CV file
 <span class="code-green">date</span> - Display the current date and time
-<span class="code-green">history</span> - Display command history`;
+<span class="code-green">history</span> - Display command history
+<span class="code-green">open portfolio</span> - Open portfolio website
+<span class="code-green">open projects</span> - Open projects page`;
       break;
-    
+
     case 'download':
       if (args[0] === 'cv') {
         output = 'Downloading CV...';
@@ -362,11 +364,11 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
         output = 'Usage: download cv';
       }
       break;
-    
+
     case 'fastfetch':
       output = generateFastFetch();
       break;
-    
+
     case 'clear':
       setHistory([]);
       return;
@@ -400,12 +402,28 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
         }
       }
       break;
-    
+
+    case 'open':
+      if (args[0] === 'portfolio') {
+        output = 'Opening portfolio website...';
+        setTimeout(() => {
+          window.location.href = '/portfolio';
+        }, 500);
+      } else if (args[0] === 'projects') {
+        output = 'Opening projects page...';
+        setTimeout(() => {
+          window.location.href = '/projects';
+        }, 500);
+      } else {
+        output = `Cannot open: ${args[0]}. Available options: portfolio, projects`;
+      }
+      break;
+
     default:
       if (command.trim() !== '') {
         output = `<span class="code-red">command not found: ${cmd}</span>`;
       }
   }
-  
+
   setHistory(prev => [...prev, { command, output }]);
 };
