@@ -74,21 +74,27 @@ const generateFastFetch = () => {
    .\`                                 \`/
 `;
 
-  return `<div class="fastfetch">
+return `<div class="fastfetch">
     <div class="fastfetch-art">${asciiArt}</div>
     <div class="fastfetch-info">
-      <div class="fastfetch-row"><div class="fastfetch-label">DE:</div><div>Vivobook_ASUSLaptop X1504VA_F1504)</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Name:</div><div>Tan Sinh Nguyen</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">DOB:</div><div>25/07/2004</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Education:</div><div>Bachelor of Computer Science</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">University:</div><div>University of Wollongong</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Year:</div><div>Final year (2025)</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Location:</div><div>Sydney, Australia</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Projects:</div><div>White Knight, Price Checking, CV AI Builder, Student Management</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Skills:</div><div>React, TypeScript, Node.js, AWS, MongoDB, Spring Boot</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Hobbies:</div><div>Enjoying cold drinks, watching YouTube, coding side projects</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Languages:</div><div>JavaScript, TypeScript, Java, Python, Go</div></div>
+      <br>
+      <div class="fastfetch-row"><div class="fastfetch-label">System:</div><div>Vivobook_ASUSLaptop X1504VA_F1504</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">CPU:</div><div>13th Gen Intel(R) Core(TM) i7-135z</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">GPU:</div><div>Intel Iris Xe Graphics @ 1.30 GHz</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">Memory:</div><div>5.00 GiB / 15.25 GiB (33%)</div></div>
-      <div class="fastfetch-row"><div class="fastfetch-label">Disk:</div><div>39.18 GiB / 936.84 GiB (4%) - ext4</div></div>
-      <br>
       <div class="fastfetch-row"><div class="fastfetch-label">OS:</div><div>Arch Linux x86_64</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">Kernel:</div><div>Linux 6.16.5-arch1-1</div></div>
-      <div class="fastfetch-row"><div class="fastfetch-label">Uptime:</div><div>1 hour, 36 mins</div></div>
-      <div class="fastfetch-row"><div class="fastfetch-label">Packages:</div><div>1199 (pacman)</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">Shell:</div><div>zsh 5.9</div></div>
-      <div class="fastfetch-row"><div class="fastfetch-label">WM:</div><div>ghostty</div></div>
     </div>
   </div>`;
 };
