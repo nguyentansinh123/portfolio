@@ -25,7 +25,9 @@ const getWelcomeMessage = () => {
       <pre class="ascii-art">${asciiArt}</pre>
       <div class="welcome-message">
         <h2>Welcome to my portfolio!</h2>
-        <p>This is a terminal-based portfolio. Type 'help' to see available commands.</p>
+        <p>This is a terminal-based portfolio.</p>
+        <p>🎓 <span class="code-yellow">New here? Type 'tutorial' for an interactive guide!</span></p>
+        <p>Type 'help' to see all available commands.</p>
       </div>
     </div>
   `;

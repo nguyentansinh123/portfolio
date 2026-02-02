@@ -273,3 +273,23 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Tutorial styling */
+.tutorial-step {
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #1e1e2e;
+  border-left: 4px solid #61afef;
+  border-radius: 4px;
+}
+
+.tutorial-step h3 {
+  color: #61afef;
+  margin-top: 0;
+}
+
+.tutorial-step code {
+  background-color: #282c34;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #e5c07b;
+}

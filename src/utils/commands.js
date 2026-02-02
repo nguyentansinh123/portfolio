@@ -1,4 +1,11 @@
 import { fileSystem } from './filesystem';
+import { 
+  initTutorial, 
+  handleTutorialCommand, 
+  isTutorialActive, 
+  exitTutorial,
+  getTutorialHelp 
+} from './tutorial';
 
 const getCurrentDirectory = (currentDir) => {
   const path = currentDir.split('/').filter(p => p && p !== '~');
@@ -83,8 +90,8 @@ return `<div class="fastfetch">
       <div class="fastfetch-row"><div class="fastfetch-label">University:</div><div>University of Wollongong</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">Year:</div><div>Final year (2025)</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">Location:</div><div>Sydney, Australia</div></div>
-      <div class="fastfetch-row"><div class="fastfetch-label">Projects:</div><div>White Knight, Price Checking, CV AI Builder, Student Management</div></div>
-      <div class="fastfetch-row"><div class="fastfetch-label">Skills:</div><div>React, TypeScript, Node.js, AWS, MongoDB, Spring Boot</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Projects:</div><div>White Knight, Price Checking, CV AI Builder, School Microservices</div></div>
+      <div class="fastfetch-row"><div class="fastfetch-label">Skills:</div><div>React, TypeScript, Node.js, AWS, MongoDB, Spring Boot, Kafka</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">Hobbies:</div><div>Enjoying cold drinks, watching YouTube, coding side projects</div></div>
       <div class="fastfetch-row"><div class="fastfetch-label">Languages:</div><div>JavaScript, TypeScript, Java, Python, Go</div></div>
       <br>
@@ -135,6 +142,16 @@ const parseArgs = (command) => {
 };
 
 export const processCommand = (command, currentDir, setCurrentDir, setHistory, setIsNanoMode, setNanoFile, commandHistory) => {
+  // Check if tutorial is active and handle tutorial-specific commands
+  if (isTutorialActive()) {
+    const tutorialOutput = handleTutorialCommand(command);
+    if (tutorialOutput !== null) {
+      setHistory(prev => [...prev, { command, output: tutorialOutput }]);
+      return;
+    }
+    // If tutorialOutput is null, let the command execute normally and validate in tutorial
+  }
+
   const args = parseArgs(command.trim());
   const cmd = args.shift() || '';
   let output = '';
@@ -336,8 +353,36 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
       output = commandHistory.join('<br>');
       break;
 
+    case 'tutorial':
+      if (args[0] === 'start' || !args[0]) {
+        output = initTutorial();
+      } else if (args[0] === 'restart') {
+        output = initTutorial();
+      } else if (args[0] === 'help') {
+        output = getTutorialHelp();
+      } else if (args[0] === 'exit') {
+        exitTutorial();
+        output = `<div class="code-green">Tutorial exited. Type 'tutorial' to start again anytime!</div>`;
+      } else {
+        output = getTutorialHelp();
+      }
+      break;
+
+    case 'next':
+    case 'n':
+    case 'prev':
+    case 'p':
+    case 'skip':
+    case 'restart':
+      // These commands are handled by the tutorial system when active
+      if (!isTutorialActive()) {
+        output = `<div class="code-yellow">No tutorial active. Type 'tutorial' to start!</div>`;
+      }
+      break;
+
     case 'help':
       output = `Available commands:
+<span class="code-green">tutorial</span> - Start interactive tutorial
 <span class="code-green">ls</span> - List directory contents
 <span class="code-green">cd</span> - Change directory
 <span class="code-green">cat</span> - Display file content
@@ -356,7 +401,9 @@ export const processCommand = (command, currentDir, setCurrentDir, setHistory, s
 <span class="code-green">date</span> - Display the current date and time
 <span class="code-green">history</span> - Display command history
 <span class="code-green">open portfolio</span> - Open portfolio website
-<span class="code-green">open projects</span> - Open projects page`;
+<span class="code-green">open projects</span> - Open projects page
+
+Type <span class="code-yellow">tutorial</span> to start the interactive guide!`;
       break;
 
     case 'download':
