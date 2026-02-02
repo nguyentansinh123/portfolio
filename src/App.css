@@ -1,9 +1,31 @@
 .App {
   width: 100vw;
   height: 100vh;
-  background-color: #1a1a1a;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0a0a0a 100%);
   position: relative;
   overflow: hidden;
+}
+
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 200% 200%;
+  animation: stars 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
 }
 
 /* Remove all focus outlines in the app */
@@ -14,7 +36,9 @@
 }
 
 .terminal {
-  background-color: #000000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #abb2bf;
   height: 100%;
   padding: 10px;
@@ -25,6 +49,8 @@
   border-bottom-right-radius: 8px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .welcome-container {
@@ -38,6 +64,13 @@
 
 .welcome-message h2 {
   color: #61afef;
+  text-shadow: 0 0 10px rgba(97, 175, 239, 0.5);
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 10px rgba(97, 175, 239, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(97, 175, 239, 0.8), 0 0 30px rgba(97, 175, 239, 0.4); }
 }
 
 .ascii-art {
@@ -45,7 +78,14 @@
   font-size: 10px;
   flex-basis: 100%;
   text-align: left;
-  color: #98c379; /* Lazy Git green */
+  color: #98c379;
+  filter: drop-shadow(0 0 8px rgba(152, 195, 121, 0.4));
+  animation: asciiFloat 4s ease-in-out infinite;
+}
+
+@keyframes asciiFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .system-info {
@@ -57,13 +97,23 @@
 }
 
 .info-box {
-  border: 1px solid #56b6c2;
-  padding: 10px;
+  border: 1px solid rgba(86, 182, 194, 0.5);
+  padding: 12px;
   margin-bottom: 20px;
   white-space: pre;
   color: #abb2bf;
-  background-color: #2c323c;
-  border-radius: 5px;
+  background: rgba(44, 50, 60, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.info-box:hover {
+  transform: translateY(-2px);
+  border-color: rgba(86, 182, 194, 0.8);
+  box-shadow: 0 6px 20px rgba(86, 182, 194, 0.3);
 }
 
 .info-box h4 {
@@ -82,23 +132,78 @@
 .dot {
   margin: 0 5px;
   font-size: 20px;
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
 }
 
-.dot.red { color: #e06c75; }
-.dot.yellow { color: #e5c07b; }
-.dot.green { color: #98c379; }
-.dot.blue { color: #61afef; }
-.dot.magenta { color: #c678dd; }
-.dot.cyan { color: #56b6c2; }
-.dot.white { color: #abb2bf; }
-.dot.black { color: #282c34; }
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.dot.red { 
+  color: #e06c75;
+  filter: drop-shadow(0 0 5px rgba(224, 108, 117, 0.5));
+  animation-delay: 0s;
+}
+.dot.yellow { 
+  color: #e5c07b;
+  filter: drop-shadow(0 0 5px rgba(229, 192, 123, 0.5));
+  animation-delay: 0.2s;
+}
+.dot.green { 
+  color: #98c379;
+  filter: drop-shadow(0 0 5px rgba(152, 195, 121, 0.5));
+  animation-delay: 0.4s;
+}
+.dot.blue { 
+  color: #61afef;
+  filter: drop-shadow(0 0 5px rgba(97, 175, 239, 0.5));
+  animation-delay: 0.6s;
+}
+.dot.magenta { 
+  color: #c678dd;
+  filter: drop-shadow(0 0 5px rgba(198, 120, 221, 0.5));
+  animation-delay: 0.8s;
+}
+.dot.cyan { 
+  color: #56b6c2;
+  filter: drop-shadow(0 0 5px rgba(86, 182, 194, 0.5));
+  animation-delay: 1s;
+}
+.dot.white { 
+  color: #abb2bf;
+  filter: drop-shadow(0 0 5px rgba(171, 178, 191, 0.5));
+  animation-delay: 1.2s;
+}
+.dot.black { 
+  color: #282c34;
+  animation-delay: 1.4s;
+}
 
 
 .shell {
   padding: 10px;
   height: 100%;
   overflow-y: auto;
-  box-sizing: border-box;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .prompt {
@@ -108,9 +213,13 @@
 }
 
 .prompt > span:first-of-type {
-  color: #98c379;
+  background: linear-gradient(90deg, #98c379 0%, #56b6c2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-right: 5px;
   font-weight: bold;
+  text-shadow: 0 0 10px rgba(152, 195, 121, 0.3);
 }
 
 .prompt span:first-child {
@@ -127,7 +236,7 @@
 
 .cursor {
   display: inline-block;
-  background-color: #abb2bf;
+  background-color: #ffffff;
   width: 8px;
   height: 16px;
   margin-left: -1px;
@@ -140,7 +249,7 @@
     background-color: transparent;
   }
   50% {
-    background-color: #abb2bf;
+    background-color: #ffffff;
   }
 }
 
@@ -249,28 +358,35 @@
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #61afef;
-  color: #1a1a1a;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
   border: none;
   padding: 15px 30px;
   font-size: 1.2em;
   font-weight: bold;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  box-shadow: 0 5px 25px rgba(102, 126, 234, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 1000;
+  text-decoration: none;
+  animation: floatButton 3s ease-in-out infinite;
+}
+
+@keyframes floatButton {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
 }
 
 .portfolio-button:hover {
-  background-color: #98c379;
-  transform: translateX(-50%) translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateX(-50%) translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
 }
 
 .portfolio-button:active {
-  transform: translateX(-50%) translateY(1px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%) translateY(0) scale(0.98);
+  box-shadow: 0 3px 15px rgba(102, 126, 234, 0.4);
 }
 
 /* Tutorial styling */

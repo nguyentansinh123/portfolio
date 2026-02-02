@@ -4,6 +4,7 @@ import Terminal from './components/Terminal';
 import WindowManager from './components/WindowManager';
 import Portfolio from './components/Portfolio';
 import Projects from './components/Projects';
+import AnimatedBackground from './components/AnimatedBackground';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 
 const TerminalPage = () => (
   <div className="App">
+    <AnimatedBackground />
     <WindowManager initialSize={{ width: '800px', height: '600px' }}>
       <Terminal />
     </WindowManager>

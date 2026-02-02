@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import { processCommand } from '../utils/commands';
 import getWelcomeMessage from '../utils/welcome';
 import Nano from './Nano';
@@ -20,12 +21,36 @@ const Shell = () => {
   useEffect(() => {
     if (terminalRef.current && !isNanoMode) {
       terminalRef.current.focus();
+      
+      // Animate terminal content on mount
+      const historyElements = terminalRef.current.querySelectorAll('.prompt, .welcome-container');
+      gsap.fromTo(
+        historyElements,
+        { opacity: 0, x: -20 },
+        { 
+          opacity: 1, 
+          x: 0, 
+          duration: 0.5, 
+          stagger: 0.1,
+          ease: 'power2.out'
+        }
+      );
     }
   }, [isNanoMode]);
 
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+      
+      // Animate new entries
+      const lastEntry = terminalRef.current.lastElementChild;
+      if (lastEntry) {
+        gsap.fromTo(
+          lastEntry,
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+        );
+      }
     }
   }, [history]);
 

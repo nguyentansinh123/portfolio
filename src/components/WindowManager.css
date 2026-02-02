@@ -2,11 +2,23 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: #000;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
   overflow: hidden;
   outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.window-manager:hover {
+  box-shadow: 
+    0 25px 70px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 30px rgba(97, 175, 239, 0.2);
 }
 
 .window-manager.maximized {

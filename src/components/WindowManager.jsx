@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
 import TitleBar from './TitleBar';
 import './WindowManager.css';
 
@@ -43,6 +44,22 @@ const WindowManager = ({ children, initialSize = { width: '80%', height: '80vh' 
       // Save to original position
       originalPositionRef.current = { x: centerX, y: centerY };
       
+      // Animate window appearance with GSAP
+      gsap.fromTo(windowRef.current, 
+        { 
+          opacity: 0, 
+          scale: 0.8,
+          y: -50 
+        },
+        { 
+          opacity: 1, 
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'back.out(1.7)'
+        }
+      );
+      
       // Mark as initialized
       isInitializedRef.current = true;
     }
@@ -50,33 +67,66 @@ const WindowManager = ({ children, initialSize = { width: '80%', height: '80vh' 
   
   // Handle window actions
   const handleMinimize = () => {
-    setWindowState(prev => ({
-      ...prev,
-      isMinimized: !prev.isMinimized
-    }));
+    if (!windowState.isMinimized) {
+      gsap.to(windowRef.current, {
+        scale: 0.1,
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.in',
+        onComplete: () => {
+          setWindowState(prev => ({
+            ...prev,
+            isMinimized: true
+          }));
+        }
+      });
+    } else {
+      setWindowState(prev => ({
+        ...prev,
+        isMinimized: false
+      }));
+      gsap.to(windowRef.current, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.4,
+        ease: 'back.out(1.7)'
+      });
+    }
   };
 
   const handleMaximize = () => {
     if (windowState.isMaximized) {
       // Restore to original size and position
-      setWindowState(prev => ({
-        ...prev,
-        isMaximized: false,
-        size: originalSizeRef.current,
-        position: originalPositionRef.current
-      }));
+      gsap.to(windowRef.current, {
+        duration: 0.4,
+        ease: 'power2.out',
+        onStart: () => {
+          setWindowState(prev => ({
+            ...prev,
+            isMaximized: false,
+            size: originalSizeRef.current,
+            position: originalPositionRef.current
+          }));
+        }
+      });
     } else {
       // Save current size and position
       originalSizeRef.current = windowState.size;
       originalPositionRef.current = windowState.position;
       
-      // Maximize
-      setWindowState(prev => ({
-        ...prev,
-        isMaximized: true,
-        position: { x: 0, y: 0 },
-        size: { width: '100%', height: '100%' }
-      }));
+      // Maximize with animation
+      gsap.to(windowRef.current, {
+        duration: 0.4,
+        ease: 'power2.out',
+        onStart: () => {
+          setWindowState(prev => ({
+            ...prev,
+            isMaximized: true,
+            position: { x: 0, y: 0 },
+            size: { width: '100%', height: '100%' }
+          }));
+        }
+      });
     }
   };
 

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
 import './Portfolio.css';
 import profileImage from '../assets/pfi.jpg';
 import { 
@@ -23,11 +24,59 @@ import { SiAmazondynamodb } from "react-icons/si";
 import { SiApachekafka } from "react-icons/si";
 
 const Portfolio = () => {
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    // Animate cards on mount
+    gsap.fromTo(
+      cardsRef.current,
+      {
+        opacity: 0,
+        y: 50,
+        scale: 0.9
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'back.out(1.7)'
+      }
+    );
+
+    // Animate tech icons
+    const techIcons = document.querySelectorAll('.tech-icons > *');
+    gsap.fromTo(
+      techIcons,
+      {
+        opacity: 0,
+        scale: 0,
+        rotation: -180
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        delay: 0.5,
+        ease: 'back.out(2)'
+      }
+    );
+  }, []);
+
+  const addToRefs = (el) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
+    }
+  };
+
   return (
     <div className="portfolio-container">
       <Link to="/" className="exit-button">Back to Terminal</Link>
       <div className="portfolio-grid">
-        <header className="portfolio-header">
+        <header className="portfolio-header" ref={addToRefs}>
           <nav>
             <Link to="/portfolio">Home</Link>
             <Link to="/projects">Projects</Link>
@@ -35,16 +84,16 @@ const Portfolio = () => {
           </nav>
         </header>
 
-        <div className="card who-am-i">
+        <div className="card who-am-i" ref={addToRefs}>
           <h2>Who am I?</h2>
           <p>Hey! My Name is Sinh, I am a 21 years old Software Developer in Sydney. I like to build full-stack apps, brew strong coffee, and learn new tricks while coding.</p>
         </div>
 
-        <div className="card student-dev">
+        <div className="card student-dev" ref={addToRefs}>
           <h3>Stundent & Full Stack Developer</h3>
         </div>
 
-        <div className="card technologies">
+        <div className="card technologies" ref={addToRefs}>
           <h2>Technologies I have worked with</h2>
           <div className="tech-icons">
             <SiJavascript />
@@ -69,20 +118,20 @@ const Portfolio = () => {
           </div>
         </div>
 
-        <div className="card profile">
+        <div className="card profile" ref={addToRefs}>
           <div className="profile-pic">
             <img src={profileImage} alt="Sinh Nguyen" />
           </div>
           <h3>Sinh Nguyen</h3>
         </div>
 
-        <div className="card starry-sky"></div>
+        <div className="card starry-sky" ref={addToRefs}></div>
 
-        <div className="card quote">
+        <div className="card quote" ref={addToRefs}>
           <p>"The only way to do great work is to love what you do."</p>
         </div>
 
-        <div className="card education">
+        <div className="card education" ref={addToRefs}>
           <h2>Education</h2>
           <div>
             <h4>Bachelor of computer science <span className="date">(Oct 2022 - Dec 2025)</span></h4>
