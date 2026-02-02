@@ -78,7 +78,7 @@ const Portfolio = () => {
       <div className="portfolio-grid">
         <header className="portfolio-header" ref={addToRefs}>
           <nav>
-            <Link to="/portfolio">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/projects">Projects</Link>
             <a href="#contact">Contact</a>
           </nav>
